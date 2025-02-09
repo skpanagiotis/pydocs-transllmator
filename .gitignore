@@ -1,0 +1,47 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment folders
+venv/
+.env/
+.venv/
+
+# Ignore model caches (Hugging Face, PyTorch, TensorFlow)
+~/.cache/huggingface/
+~/.cache/torch/
+~/.cache/transformers/
+models/
+checkpoints/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.out
+*.err
+*.pid
+
+# Ignore IDE settings
+.vscode/
+.idea/
+*.swp
+
+# Ignore environment files
+.env
+config.json
+
+# Ignore Streamlit temp files
+.streamlit/
+
+# Ignore API keys and credentials (if any)
+secrets.json
+credentials.json
