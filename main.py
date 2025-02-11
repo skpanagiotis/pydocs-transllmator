@@ -1,4 +1,5 @@
 import argparse
+import magic
 import time
 import polib
 from tqdm import tqdm
@@ -36,8 +37,29 @@ def translate_po_file(input_file, output_file):
     print(f"✅ Translated file saved as: {output_file}")
 
 
+def is_po_file(filename):
+    file_type = magic.from_file(filename, mime=True)
+
+    if file_type == "text/x-po":
+        with open(filename, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            if any(str(line).startswith('msgid') for line in lines):
+                return True
+    return False
+
+
 if __name__ == '__main__':
-    start = time.time()
-    # Usage Example
-    translate_po_file("files/test.po", "files/translated.po")
-    print(f"Translated in {time.time() - start}")
+    parser = argparse.ArgumentParser(
+        description="Read .po file for translation.")
+    parser.add_argument("filename", type=str, help="Path to the .po file")
+
+    args = parser.parse_args()
+
+    try:
+        start = time.time()
+        if is_po_file(args.filename):
+            translate_po_file(args.filename, args.filename)
+            print(f"Translated in {time.time() - start}")
+
+    except FileNotFoundError:
+        print(f"Error: File '{args.filename}' not found.")
