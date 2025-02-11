@@ -1,3 +1,5 @@
+argparse
+python-magic
 tqdm
 polib
 transformers
